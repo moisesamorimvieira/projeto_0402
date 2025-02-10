@@ -42,11 +42,11 @@ const uint8_t font5x5[10][5] = {
     {0b11111, 0b10000, 0b11111, 0b00001, 0b11111}, // 2
     {0b11110, 0b00001, 0b01110, 0b00001, 0b11110}, // 3
     {0b10000, 0b00001, 0b11111, 0b10001, 0b10001}, // 4
-    {0b11111, 0b10000, 0b11110, 0b00001, 0b11110}, // 5
-    {0b11111, 0b10000, 0b11111, 0b10001, 0b11111}, // 6
-    {0b11111, 0b00001, 0b00010, 0b00100, 0b00100}, // 7
+    {0b11111, 0b00001, 0b11111, 0b10000, 0b11111}, // 5
+    {0b11111, 0b10001, 0b11111, 0b10000, 0b11111}, // 6
+    {0b00010, 0b00100, 0b01000, 0b00001, 0b11111}, // 7
     {0b11111, 0b10001, 0b11111, 0b10001, 0b11111}, // 8
-    {0b11111, 0b10001, 0b11111, 0b00001, 0b11110}  // 9*/
+    {0b11111, 0b10000, 0b11111, 0b10001, 0b11111}  // 9*/
 };
 
 
@@ -81,7 +81,8 @@ void exibir_animacao(ssd1306_t *ssd) {
     ssd1306_send_data(ssd); // Atualiza o display
 }
 
-void botao_a_irq_handler(uint gpio, uint32_t events) {
+
+void botao_A_irq_handler(uint gpio, uint32_t events) {
     led_verde_status = !led_verde_status;
     gpio_put(LED_G_PIN, led_verde_status);
     
@@ -97,7 +98,7 @@ void botao_a_irq_handler(uint gpio, uint32_t events) {
     printf("Botão A pressionado, LED Verde %s\n", led_verde_status ? "ligado" : "desligado");
 }
 
-void botao_b_irq_handler(uint gpio, uint32_t events) {
+void botao_B_irq_handler(uint gpio, uint32_t events) {
     led_azul_status = !led_azul_status;
     gpio_put(LED_B_PIN, led_azul_status);
     
@@ -141,8 +142,8 @@ int main() {
     gpio_pull_up(BOTAO_B_PIN);
 
    
-    gpio_set_irq_enabled_with_callback(BOTAO_A_PIN, GPIO_IRQ_EDGE_FALL, true, &botao_a_irq_handler);
-    gpio_set_irq_enabled_with_callback(BOTAO_B_PIN, GPIO_IRQ_EDGE_FALL, true, &botao_b_irq_handler);
+    gpio_set_irq_enabled_with_callback(BOTAO_A_PIN, GPIO_IRQ_EDGE_FALL, true, &botao_A_irq_handler);
+    gpio_set_irq_enabled_with_callback(BOTAO_B_PIN, GPIO_IRQ_EDGE_FALL, true, &botao_B_irq_handler);
     
     ws2812_init(LED_PIN); // Inicializa WS2812
 
