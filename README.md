@@ -86,7 +86,7 @@ Vídeo de demonstração: Deve ser produzido um vídeo de até 2 minutos, no qua
     
 <figcaption>
 
-**Figura 1** - Youtube - Acessível em:[ https://wokwi.com/projects/421471551935887361](https://youtu.be/qZhzecNl0k8)
+**Figura 1** - Youtube - Acessível em:https://youtu.be/qZhzecNl0k8
     </figcaption>
   </figure>
 </div>
